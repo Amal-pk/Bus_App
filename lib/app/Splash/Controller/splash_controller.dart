@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:noviindus/app/Login/View/login.dart';
-import 'package:noviindus/app/Splash/view/splash.dart';
 
 class SplashController extends ChangeNotifier {
   getStart(BuildContext context) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:noviindus/app/Home/Controller/homepage_controller.dart';
-import 'package:noviindus/app/Home/View/homepage.dart';
+import 'package:noviindus/app/Login/Controller/login_controller.dart';
 import 'package:noviindus/app/Splash/Controller/splash_controller.dart';
 import 'package:noviindus/app/Splash/view/splash.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +18,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => SplashController(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => LoginController(),
         ),
         ChangeNotifierProvider(
           create: (context) => HomePageController(),
