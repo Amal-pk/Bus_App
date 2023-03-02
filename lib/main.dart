@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:noviindus/app/Home/Controller/homepage_controller.dart';
 import 'package:noviindus/app/Home/View/homepage.dart';
+import 'package:noviindus/app/Splash/Controller/splash_controller.dart';
+import 'package:noviindus/app/Splash/view/splash.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -15,6 +17,9 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
+          create: (context) => SplashController(),
+        ),
+        ChangeNotifierProvider(
           create: (context) => HomePageController(),
         ),
       ],
@@ -24,7 +29,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.red,
           ),
-          home: const HomePage()),
+          home: const Splash()),
     );
   }
 }
