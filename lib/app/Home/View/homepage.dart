@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:noviindus/app/Home/Controller/homepage_controller.dart';
 import 'package:noviindus/app/Home/View/widget/containers.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Provider.of<HomePageController>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            leading: IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.arrow_back,
+                color: Colors.transparent,
+              ),
+            ),
             pinned: true,
             backgroundColor: Colors.transparent,
             expandedHeight: 120,
@@ -56,18 +66,21 @@ class HomePage extends StatelessWidget {
                         busorDriver: "Bus",
                         manage: "Manage your Bus",
                         clr: Colors.red,
+                        img:
+                            "asset/image/png-transparent-tourist-bus-bus-cycling-tourism-removebg-preview.png",
                       ),
                       TwoContainers(
                         busorDriver: "Driver",
                         manage: "Manage your Driver",
                         clr: Colors.black,
+                        img: "asset/image/Clay_Trevenen-removebg-preview.png",
                       )
                     ],
                   ),
-                  Text("21 Buses Found"),
+                  const Text("21 Buses Found"),
                   ListView.builder(
                     shrinkWrap: true,
-                    physics: ScrollPhysics(),
+                    physics: const ScrollPhysics(),
                     itemCount: 10,
                     itemBuilder: (context, index) {
                       return Container(
@@ -83,14 +96,16 @@ class HomePage extends StatelessWidget {
                           ],
                         ),
                         child: ListTile(
-                          leading: CircleAvatar(
+                          leading: const CircleAvatar(
                             backgroundColor: Colors.red,
                           ),
-                          title: Text("Bus"),
-                          subtitle: Text("data"),
+                          title: const Text("Bus"),
+                          subtitle: const Text("Name"),
                           trailing: ElevatedButton(
-                            onPressed: () {},
-                            child: Text("Manage"),
+                            onPressed: () {
+                              controller.busManage(context);
+                            },
+                            child: const Text("Manage"),
                           ),
                         ),
                       );

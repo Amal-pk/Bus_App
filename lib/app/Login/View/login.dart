@@ -19,7 +19,7 @@ class Login extends StatelessWidget {
               color: Colors.red,
             ),
             TextFieldWidgets(
-              hint: "Email",
+              hint: "User Name",
               validator: "",
               controller: controller.emailController,
               keybord: TextInputType.emailAddress,
@@ -29,32 +29,35 @@ class Login extends StatelessWidget {
               hint: "Password",
               validator: "",
               controller: controller.passwordController,
-              keybord: TextInputType.visiblePassword, obsc: true,
-              // suffIcon: IconButton(
-              //   onPressed: () {
-              //     controller.isobscure();
-              //   },
-              //   icon: controller.obscure
-              //       ? const Icon(Icons.visibility_off)
-              //       : const Icon(Icons.visibility),
-              // ),
+              keybord: TextInputType.visiblePassword,
+              obsc: true,
             ),
           ],
         ),
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: FloatingActionButton.extended(
-          backgroundColor: Colors.red,
-          onPressed: () {},
-          label: const Text(
-            "Login",
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
-          ),
+        child: Consumer(
+          builder: (context, value, _) {
+            return FloatingActionButton.extended(
+              backgroundColor: Colors.red,
+              onPressed: () {
+                controller.loginUser(context);
+              },
+              label: controller.isLoading
+                  ? const Text(
+                      "Login",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    )
+                  : const CircularProgressIndicator(
+                      color: Colors.white,
+                    ),
+            );
+          },
         ),
       ),
     );

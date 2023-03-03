@@ -37,6 +37,7 @@ class LoginController extends ChangeNotifier {
       var token = loginRespoModel!.access;
       var refreshToken = loginRespoModel.refresh;
       log('tok$token  \nref$refreshToken');
+      log(loginRespoModel.urlId);
       saveToken(token, refreshToken);
       saveToSharedPref();
       if (loginRespoModel.status == true) {
@@ -69,7 +70,6 @@ class LoginController extends ChangeNotifier {
   }
 
   saveToSharedPref() async {
-
     final sharedPrefrence = await SharedPreferences.getInstance();
     sharedPrefrence.setString('email', emailController.text.trim());
     sharedPrefrence.setString('password', passwordController.text.trim());
