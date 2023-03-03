@@ -45,16 +45,16 @@ class Login extends StatelessWidget {
                 controller.loginUser(context);
               },
               label: controller.isLoading
-                  ? const Text(
+                  ? const CircularProgressIndicator(
+                      color: Colors.white,
+                    )
+                  : const Text(
                       "Login",
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),
-                    )
-                  : const CircularProgressIndicator(
-                      color: Colors.white,
                     ),
             );
           },

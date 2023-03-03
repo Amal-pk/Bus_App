@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:noviindus/app/Bus_Details/Details_Controller/details_controller.dart';
 import 'package:noviindus/app/Home/Controller/homepage_controller.dart';
 import 'package:noviindus/app/Login/Controller/login_controller.dart';
 import 'package:noviindus/app/Splash/Controller/splash_controller.dart';
@@ -24,6 +25,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => HomePageController(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => DetailsController(),
         ),
       ],
       child: MaterialApp(

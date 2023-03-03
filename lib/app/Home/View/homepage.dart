@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:noviindus/app/Bus_Details/Details_Controller/details_controller.dart';
 import 'package:noviindus/app/Home/Controller/homepage_controller.dart';
 import 'package:noviindus/app/Home/View/widget/containers.dart';
 import 'package:provider/provider.dart';
@@ -100,10 +101,15 @@ class HomePage extends StatelessWidget {
                             backgroundColor: Colors.red,
                           ),
                           title: const Text("Bus"),
-                          subtitle: const Text("Name"),
+                          subtitle: index.isEven
+                              ? const Text("Two Seat")
+                              : const Text("Three Seat"),
                           trailing: ElevatedButton(
                             onPressed: () {
-                              controller.busManage(context);
+                              controller.busManage(
+                                context,
+                                index.isEven ? 'Two Seat' : 'Three Seat',
+                              );
                             },
                             child: const Text("Manage"),
                           ),

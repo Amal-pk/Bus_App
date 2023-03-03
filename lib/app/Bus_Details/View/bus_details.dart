@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:noviindus/app/Bus_Details/View/widget/driver_container.dart';
+import 'package:noviindus/app/Bus_Details/View/widget/seat_container.dart';
+import 'package:noviindus/app/Bus_Details/View/widget/seat_container3.dart';
 
 class BusManage extends StatelessWidget {
-  const BusManage({super.key});
+  const BusManage({
+    super.key,
+    required this.seat,
+  });
+  final String seat;
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +60,12 @@ class BusManage extends StatelessWidget {
             child: ListView(
               shrinkWrap: true,
               primary: false,
+              children: [
+                const DriverContainer(),
+                seat == 'Two Seat'
+                    ? const TwoSeatContainer()
+                    : const ThreeSeatContainer(),
+              ],
             ),
           ),
         ],
