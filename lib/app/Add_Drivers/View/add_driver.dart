@@ -8,7 +8,7 @@ class AddDriver extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<AddDriverController>(context);
+    final controller = context.watch<AddDriverController>();
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -64,22 +64,49 @@ class AddDriver extends StatelessWidget {
                   obsc: false,
                 ),
                 TextFieldWidgets(
-                  hint: 'Enter License Number',
+                  hint: 'Enter Mobile Number',
                   validator: '',
-                  controller: controller.number,
-                  keybord: TextInputType.name,
+                  controller: controller.mobile,
+                  keybord: TextInputType.phone,
                   obsc: false,
                 ),
-                ElevatedButton(
-                    onPressed: () {
-                      // controller.add();
-                      // controller.clear();
-                    },
-                    child: Text("Save"))
+                TextFieldWidgets(
+                  hint: 'Enter License Number',
+                  validator: '',
+                  controller: controller.license,
+                  keybord: TextInputType.visiblePassword,
+                  obsc: false,
+                ),
               ],
             ),
           )
         ],
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Consumer(
+          builder: (context, value, _) {
+            return FloatingActionButton.extended(
+              backgroundColor: Colors.red,
+              onPressed: () {
+                controller.detailOfDriver(context);
+                controller.clear();
+              },
+              label: controller.isLoading
+                  ? const CircularProgressIndicator(
+                      color: Colors.white,
+                    )
+                  : const Text(
+                      "Save",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+            );
+          },
+        ),
       ),
     );
   }

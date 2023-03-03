@@ -2,36 +2,40 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:noviindus/app/Home/Model/home_model.dart';
+import 'package:noviindus/app/Bus_Drivers/Model/model.dart';
 import 'package:noviindus/widget/core/const.dart';
 import 'package:noviindus/widget/error_handing/dio_error_handing.dart';
 
-class BusAllList {
-  BusAllList._instans();
-  static BusAllList instance = BusAllList._instans();
-  factory BusAllList() {
+class DriverService {
+  DriverService._instans();
+  static DriverService instance = DriverService._instans();
+  factory DriverService() {
     return instance;
   }
+
   ErrorCode errorCode = ErrorCode();
 
-  Future<BusList?> busList(String id, String token) async {
-    log("+++++++++++$token");
+  Future<DriverDetails?> driverServide(String id, String token) async {
+    final url = baseUrl + driverUrl + id + "/";
+    log(url);
     try {
       Response response = await Dio().get(
-        baseUrl + busListUrl + id + "/",
+        baseUrl + driverUrl + id + "/",
         options: Options(headers: {"Authorization": "Bearer $token"}),
       );
-
+      log(response.data.toString());
       if (response.statusCode == 200) {
         print(response.data);
-        log(response.requestOptions.headers.toString());
         const SnackBar(
           content: Text("Login successfully"),
           backgroundColor: Color.fromARGB(255, 97, 98, 97),
         );
-        return BusList.fromJson(response.data);
+        return DriverDetails.fromJson(response.data);
       }
     } on DioError catch (e) {
+      log("fjovojasdfovadfsjio;v");
+      log(e.requestOptions.headers.toString());
+      e.requestOptions.headers;
       return errorCode.status401(e);
     } catch (e) {
       const SnackBar(

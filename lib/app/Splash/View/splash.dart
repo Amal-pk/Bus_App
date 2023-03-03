@@ -16,7 +16,7 @@ class Splash extends StatelessWidget {
             // style: DefaultTextStyle.of(context).style,
             children: [
               TextSpan(
-                text: 'Moo',
+                text: 'Moov',
                 style: TextStyle(
                   fontSize: 35,
                   fontWeight: FontWeight.bold,

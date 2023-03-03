@@ -21,7 +21,7 @@ class TwoContainers extends StatelessWidget {
       margin: const EdgeInsets.all(8),
       padding: const EdgeInsets.only(top: 16),
       width: wid / 2.6,
-      height: high / 4,
+      height: high / 4.2,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: clr,
@@ -36,7 +36,9 @@ class TwoContainers extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Center(
+          Container(
+            padding: const EdgeInsets.only(left: 16),
+            alignment: Alignment.topLeft,
             child: Text(
               busorDriver,
               style: const TextStyle(
@@ -46,7 +48,9 @@ class TwoContainers extends StatelessWidget {
               ),
             ),
           ),
-          Center(
+          Container(
+            padding: const EdgeInsets.only(left: 16),
+            alignment: Alignment.topLeft,
             child: Text(
               manage,
               style: const TextStyle(

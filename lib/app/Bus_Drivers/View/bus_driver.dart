@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:noviindus/app/Add_Drivers/Controller/add_controller.dart';
 import 'package:noviindus/app/Add_Drivers/View/add_driver.dart';
+import 'package:noviindus/app/Bus_Drivers/Controller/driver_controller.dart';
 import 'package:provider/provider.dart';
 
 class BusDriversList extends StatelessWidget {
@@ -8,7 +11,8 @@ class BusDriversList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<AddDriverController>(context);
+    final controller = context.watch<BusDriverController>();
+    // final controller = Provider.of<BusDriverController>(context);
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -59,9 +63,10 @@ class BusDriversList extends StatelessWidget {
                 ListView.builder(
                   shrinkWrap: true,
                   primary: false,
-                  itemCount: 5,
+                  itemCount: controller.near.length,
                   itemBuilder: (context, index) {
-                    // final data = controller.addDriver[index];
+                    final data = controller.near[index];
+                    log(controller.near.length.toString());
                     return Container(
                       margin: const EdgeInsets.symmetric(
                           vertical: 10, horizontal: 16),
@@ -77,10 +82,10 @@ class BusDriversList extends StatelessWidget {
                       ),
                       child: ListTile(
                         leading: const CircleAvatar(
-                          backgroundColor: Colors.red,
+                          backgroundColor: Colors.grey,
                         ),
-                        title: Text(""),
-                        subtitle: Text(""),
+                        title: Text(data.name),
+                        subtitle: Text(data.licenseNo),
                         trailing: ElevatedButton(
                           onPressed: () {
                             // controller.addDriver.remove(data);
@@ -91,19 +96,40 @@ class BusDriversList extends StatelessWidget {
                     );
                   },
                 ),
-                FloatingActionButton.extended(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => AddDriver(),
-                          ));
-                    },
-                    label: Text("ADD DRIVER"))
               ],
             ),
           ),
         ],
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Consumer(
+          builder: (context, value, _) {
+            return FloatingActionButton.extended(
+              backgroundColor: Colors.red,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AddDriver(),
+                  ),
+                );
+              },
+              label: controller.isLoading
+                  ? const Text(
+                      "ADD DRIVER",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    )
+                  : const CircularProgressIndicator(
+                      color: Colors.white,
+                    ),
+            );
+          },
+        ),
       ),
     );
   }

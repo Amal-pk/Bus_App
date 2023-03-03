@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:noviindus/app/Bus_Details/Details_Controller/details_controller.dart';
+import 'package:noviindus/app/Bus_Drivers/Controller/driver_controller.dart';
 import 'package:noviindus/app/Bus_Drivers/View/bus_driver.dart';
 import 'package:noviindus/app/Home/Controller/homepage_controller.dart';
 import 'package:noviindus/app/Home/View/widget/containers.dart';
@@ -11,6 +12,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<HomePageController>(context);
+    final controllerBus = Provider.of<BusDriverController>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
@@ -38,16 +40,31 @@ class HomePage extends StatelessWidget {
                   begin: Alignment.topCenter,
                 ),
               ),
-              child: const Align(
+              child: Align(
                 alignment: Alignment.center,
                 child: Padding(
                   padding: EdgeInsets.all(16.0),
-                  child: Text(
-                    "Moobe",
-                    style: TextStyle(
-                      color: Colors.amber,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
+                  child: RichText(
+                    text: const TextSpan(
+                      // style: DefaultTextStyle.of(context).style,
+                      children: [
+                        TextSpan(
+                          text: 'Moov',
+                          style: TextStyle(
+                            fontSize: 35,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                        TextSpan(
+                          text: 'be',
+                          style: TextStyle(
+                            fontSize: 35,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.amber,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -64,12 +81,17 @@ class HomePage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const TwoContainers(
-                        busorDriver: "Bus",
-                        manage: "Manage your Bus",
-                        clr: Colors.red,
-                        img:
-                            "asset/image/png-transparent-tourist-bus-bus-cycling-tourism-removebg-preview.png",
+                      InkWell(
+                        onTap: () {
+                          controller.listOfBus();
+                        },
+                        child: const TwoContainers(
+                          busorDriver: "Bus",
+                          manage: "Manage your Bus",
+                          clr: Colors.red,
+                          img:
+                              "asset/image/png-transparent-tourist-bus-bus-cycling-tourism-removebg-preview.png",
+                        ),
                       ),
                       InkWell(
                         onTap: () {
@@ -79,6 +101,7 @@ class HomePage extends StatelessWidget {
                               builder: (context) => const BusDriversList(),
                             ),
                           );
+                          controllerBus.detailOfDriver();
                         },
                         child: const TwoContainers(
                           busorDriver: "Driver",
@@ -109,7 +132,7 @@ class HomePage extends StatelessWidget {
                         ),
                         child: ListTile(
                           leading: const CircleAvatar(
-                            backgroundColor: Colors.red,
+                            backgroundColor: Colors.grey,
                           ),
                           title: const Text("Bus"),
                           subtitle: index.isEven
