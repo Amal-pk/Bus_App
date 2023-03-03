@@ -21,14 +21,23 @@ class Login extends StatelessWidget {
             TextFieldWidgets(
               hint: "Email",
               validator: "",
-              controller: controller.email,
+              controller: controller.emailController,
               keybord: TextInputType.emailAddress,
+              obsc: false,
             ),
             TextFieldWidgets(
               hint: "Password",
               validator: "",
-              controller: controller.password,
-              keybord: TextInputType.name,
+              controller: controller.passwordController,
+              keybord: TextInputType.visiblePassword, obsc: true,
+              // suffIcon: IconButton(
+              //   onPressed: () {
+              //     controller.isobscure();
+              //   },
+              //   icon: controller.obscure
+              //       ? const Icon(Icons.visibility_off)
+              //       : const Icon(Icons.visibility),
+              // ),
             ),
           ],
         ),
