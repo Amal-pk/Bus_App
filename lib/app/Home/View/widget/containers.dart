@@ -19,9 +19,9 @@ class TwoContainers extends StatelessWidget {
     final high = MediaQuery.of(context).size.height;
     return Container(
       margin: const EdgeInsets.all(8),
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.only(top: 16),
       width: wid / 2.6,
-      height: high / 3.5,
+      height: high / 4,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: clr,

@@ -36,15 +36,16 @@ class LoginController extends ChangeNotifier {
           await LoginService.instance.userLogin(value, context);
       var token = loginRespoModel!.access;
       var refreshToken = loginRespoModel.refresh;
+      var id = loginRespoModel.urlId;
       log('tok$token  \nref$refreshToken');
       log(loginRespoModel.urlId);
-      saveToken(token, refreshToken);
+      saveToken(token, refreshToken, id);
       saveToSharedPref();
       if (loginRespoModel.status == true) {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => HomePage(),
+            builder: (context) => const HomePage(),
           ),
         );
         saveUserLoggedIn();
@@ -63,9 +64,10 @@ class LoginController extends ChangeNotifier {
     pref.setBool('userloggedin', true);
   }
 
-  saveToken(String token, String refreshToken) async {
+  saveToken(String token, String refreshToken, String id) async {
     SharedPreferences sT = await SharedPreferences.getInstance();
     sT.setString("Token", token);
+    sT.setString("UrlID", id);
     sT.setString("RefreshToken", refreshToken);
   }
 
