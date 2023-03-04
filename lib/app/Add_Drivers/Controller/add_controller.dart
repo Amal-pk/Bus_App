@@ -3,13 +3,14 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:noviindus/app/Add_Drivers/Model/model.dart';
 import 'package:noviindus/app/Add_Drivers/Service/service.dart';
+import 'package:noviindus/app/Bus_Drivers/Controller/driver_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AddDriverController extends ChangeNotifier {
   final TextEditingController name = TextEditingController();
   final TextEditingController mobile = TextEditingController();
   final TextEditingController license = TextEditingController();
-
+  BusDriverController add = BusDriverController();
   bool isLoading = false;
 
   detailOfDriver(BuildContext context) async {
@@ -35,6 +36,8 @@ class AddDriverController extends ChangeNotifier {
     log(value.mobile);
     if (driverManage?.status == true) {
       Navigator.pop(context);
+      add.detailOfDriver();
+      notifyListeners();
     }
     // log(driverManage?.status?.toString());
     isLoading = false;

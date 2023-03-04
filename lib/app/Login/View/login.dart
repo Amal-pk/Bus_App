@@ -8,7 +8,7 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<LoginController>(context);
+    final controller = context.watch<LoginController>();
     return Scaffold(
       body: SafeArea(
         top: false,
@@ -16,7 +16,12 @@ class Login extends StatelessWidget {
           children: [
             Container(
               height: 300,
-              color: Colors.red,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(
+                        "asset/image/WhatsApp Image 2023-03-03 at 22.24.44.jpg",
+                      ),
+                      fit: BoxFit.cover)),
             ),
             TextFieldWidgets(
               hint: "User Name",

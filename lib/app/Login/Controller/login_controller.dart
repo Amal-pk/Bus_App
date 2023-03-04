@@ -42,12 +42,14 @@ class LoginController extends ChangeNotifier {
       saveToken(token, refreshToken, id);
       saveToSharedPref();
       if (loginRespoModel.status == true) {
-        Navigator.push(
+        Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
             builder: (context) => const HomePage(),
           ),
+          (route) => (false),
         );
+        notifyListeners();
         saveUserLoggedIn();
       } else if (loginRespoModel.message == null) {
         print('value is null');

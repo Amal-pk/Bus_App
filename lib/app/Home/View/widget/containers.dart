@@ -21,7 +21,7 @@ class TwoContainers extends StatelessWidget {
       margin: const EdgeInsets.all(8),
       padding: const EdgeInsets.only(top: 16),
       width: wid / 2.6,
-      height: high / 4.2,
+      height: high / 3.7,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: clr,
