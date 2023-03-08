@@ -17,11 +17,13 @@ class Login extends StatelessWidget {
             Container(
               height: 300,
               decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(
-                        "asset/image/WhatsApp Image 2023-03-03 at 22.24.44.jpg",
-                      ),
-                      fit: BoxFit.cover)),
+                image: DecorationImage(
+                  image: AssetImage(
+                    "asset/image/WhatsApp Image 2023-03-03 at 22.24.44.jpg",
+                  ),
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
             TextFieldWidgets(
               hint: "User Name",
